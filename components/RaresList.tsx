@@ -1,18 +1,18 @@
 import React from 'react';
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 import data from '../api/rares.json';
+import ItemInfo from './ItemInfo';
 
 export default function RaresList() {
   return (
     <FlatList
-      data={data}
+      data={data as TRare[]}
       keyExtractor={({ name }) => name}
       renderItem={({ item }) => (
-        <View style={styles.item}>
+        <View style={styles.container}>
           <Ionicons name="person-circle-outline" size={24} color="black" />
-          <Text>{item.name}</Text>
-          <Text>{item.type} &#183; {item.class}</Text>
+          <ItemInfo item={item} />
         </View>
       )}
     />
@@ -20,11 +20,9 @@ export default function RaresList() {
 }
 
 const styles = StyleSheet.create({
-  item: {
-    display: 'flex',
-    justifyContent: 'center',
-    padding: '14px',
-    width: '100vw',
+  container: {
+    flexDirection: 'row',
+    padding: 14,
     borderBottomColor: '#DDD',
     borderBottomWidth: 1,
   }

@@ -1,4 +1,4 @@
-type TData = {
+type TRare = {
   spawn: number[];
   name: string;
   zone: string;
